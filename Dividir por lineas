@@ -1,0 +1,26 @@
+' Toma la hoja activa y la divide creando un nuevo libro por cada fila (excepto la fila 1).
+' En cada archivo guardan los encabezados (fila 1) y la fila correspondiente a cada registro,
+' todos los libros son guardados en la misma carpeta del libro original.
+'---------------------------------------------------------------------------------------------
+Sub DividirPorLineas()
+
+Dim filMax As Long
+Dim fila As Long
+Dim contenido As Range
+Dim libroNuevo As Workbook
+Dim ruta As String
+    
+filMax = ActiveSheet.UsedRange.Rows.Count
+ruta = ActiveWorkbook.Path
+    
+    With ActiveSheet
+        For fila = 2 To filMax
+            Set libroNuevo = Workbooks.Add
+            Set contenido = Union(.Rows(1), .Rows(fila))
+            contenido.Copy Destination:=libroNuevo.Sheets(1).Range("A1")
+            libroNuevo.SaveAs Filename:=ruta & "\Registro_" & fila - 1 & ".xlsx"
+            libroNuevo.Close SaveChanges:=True
+        Next fila
+    End With
+
+End Sub
