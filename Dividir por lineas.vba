@@ -1,7 +1,3 @@
-' Toma la hoja activa y la divide creando un nuevo libro por cada fila (excepto la fila 1).
-' En cada archivo guardan los encabezados (fila 1) y la fila correspondiente a cada registro,
-' todos los libros son guardados en la misma carpeta del libro original.
-'---------------------------------------------------------------------------------------------
 Sub DividirPorLineas()
 
 Dim filMax As Long
